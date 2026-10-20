@@ -1,0 +1,7 @@
+{
+  "python": "3.8.10",
+  "machine": "aarch64",
+  "opencv": "4.2.0",
+  "numpy": "1.17.4",
+  "source": "/home/auv8/Desktop/winner_fish/txy_codex_workplace/test_tong"
+}
