@@ -1,0 +1,16 @@
+10.17 最后版本：仅前摄像头巡线
+启动：在本目录运行 python3 run_wide_search.py --run
+仅预览：python3 run_wide_search.py
+Ctrl+C 停止并恢复参数；每轮最多300秒。
+摄像头：/dev/video0；保留原图水平20%-100%；横线拟合高度50%-100%。
+根部左于40%：1350-1450us/4Hz；40%-60%：1450-1550us/4Hz；右于60%：1550-1650us/4Hz。
+先看到横线，再连续丢失1秒：700-1000us/3Hz左转找线。
+每0.1秒检查有效线条；找到后继续左转1秒再巡线。再次触发需重新看到横线。
+CH10鱼尾；无解锁和模式切换。相机失效/数据过期停止。
+系统依赖：Python3、OpenCV、NumPy；编译需要g++与/opt/ros/noetic/include中的MAVLink头文件。
+重编译：g++ -std=c++11 -O2 -I/opt/ros/noetic/include wide_search_control.cpp -o wide_search_control
+离线检查：g++ -std=c++11 test_wide_search.cpp -o test_wide_search && ./test_wide_search
+二进制为当前Jetson机器架构，换架构需重新编译。
+录像由route_recording.py生成，保存在运行目录；帧实际时间见frames.csv。
+这是完整程序备份，不含历史录像、运行日志或临时状态文件。
+目录名称由用户指定；本次仅备份和离线校验，未进行新的水下实测。
